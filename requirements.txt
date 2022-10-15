@@ -1,4 +1,5 @@
 django==4.1.2
+django-allauth
 dj-database-url
 dj-static
 python-decouple
