@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'pra_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-default_dburl = "sqlite:///" + str(BASE_DIR / "db.sqlite3")
+default_dburl = "sqlite:///" + str(BASE_DIR + "db.sqlite3")
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, ".env"))
 
