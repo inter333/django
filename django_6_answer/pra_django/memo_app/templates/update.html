@@ -1,0 +1,20 @@
+{% load back_link %}
+<html>
+<body>
+    <div class="memo-form">
+      <h3>メモ編集</h3>
+      <p><a href="{% url 'account_logout'  %}">ログアウト</a></p>
+      <a href="{% get_return_link request %}">戻る</a>
+      <form action="{% url 'update' id %}" method="post">
+        {% csrf_token %}
+        <div class="text-memo">
+          {{ form.content }}
+        </div>
+        <div class="post-form">
+            <input type="submit" value="編集" class="post-botton">
+        </div>
+      </form>
+    </div>
+
+</body>
+</html>

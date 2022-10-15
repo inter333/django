@@ -1,0 +1,66 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'memo_app/style.css' %}">
+    <title>memo_app</title>
+  </head>
+<body>
+    <div class="memo-form">
+      <h3>メモ内容</h3>
+      <p><a href="{% url 'account_logout'  %}">ログアウト</a></p>
+      <form action="{% url 'post' %}" method="post">
+        {% csrf_token %}
+        <div class="text-memo">
+          {{ form.content }}
+        </div>
+        <div class="post-form">
+            <input type="submit" value="登録" class="post-botton">
+        </div>
+      </form>
+    </div>
+
+    <form action="{% url 'set_record_number' %}" method="post">
+            {% csrf_token %}
+            <div class="slct01">
+                {{ record_number_form.record_number }}
+            </div>
+    </form>
+
+    <form action="{% url 'set_order_number' %}" method="post">
+            {% csrf_token %}
+            <div class="slct01">
+                {{ order_number_form.order_number }}
+            </div>
+    </form>
+
+
+  <div class="top_box">
+    {% for mm in memo %}
+      <div>
+        <p>{{ mm.content }}</p>
+        <p>{{ mm.update_datetime|date:"Y/m/d H:m:s" }}</p>
+        <td><a href="{% url 'update' mm.id %}" method="post">編集</a></td>
+        <td><a href="{% url 'delete' mm.id %}" method="post">削除</a></td>
+        <td><a href="{% url 'add_comment' mm.content %}" method="post">コメント</a></td>
+    {% endfor %}
+  </div>
+
+  <div class="pagination">
+        {% if page.has_previous %}
+        　<a href="{{ page.previous_page_number }}">前へ</a>
+        {% endif %}
+        {% for num in page.paginator.page_range %}
+            {% if page.number == num %}
+                <span class="current">{{ page.number }}</span>
+            {% else %}
+                <a href="{{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if page.has_next %}
+        　<a href="{{ page.next_page_number }}">次へ</a>
+        {% endif %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% load back_link %}
+<html>
+<body>
+    <div class="memo-form">
+      <h3>メモ削除</h3>
+      <p><a href="{% url 'account_logout'  %}">ログアウト</a></p>
+      <a href="{% get_return_link request %}">戻る</a>
+      <p>以下のレコードを削除します。</p>
+      <p>{{content.content}}</p>
+      <form action="{% url 'delete' id %}" method="post">
+        {% csrf_token %}
+        <div class="post-form">
+            <input type="submit" value="削除" class="post-botton">
+        </div>
+      </form>
+    </div>
+
+</body>
+</html>

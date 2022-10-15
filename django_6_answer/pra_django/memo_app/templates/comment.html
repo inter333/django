@@ -1,0 +1,28 @@
+{% load back_link %}
+<html>
+<body>
+    <div class="memo-form">
+      <h3>コメント</h3>
+      <p><a href="{% url 'account_logout'  %}">ログアウト</a></p>
+      <a href="{% get_return_link request %}">戻る</a>
+      <form action="{% url 'comment' memo %}" method="post">
+        {% csrf_token %}
+        <div class="text-memo">
+          {{ form.comment }}
+        </div>
+        <div class="post-form">
+            <input type="submit" value="コメントする" class="post-botton">
+        </div>
+      </form>
+    </div>
+    <div class="top_box">
+      {% for cm in comment %}
+      <div>
+        <p>{{ cm.comment }}</p>
+        <p>{{ cm.update_datetime|date:"Y/m/d H:m:s" }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+</body>
+</html>
