@@ -2,6 +2,7 @@ django==4.1.2
 django-allauth
 dj-database-url
 dj-static
+decorator_include
 python-decouple
 django-environ
 gunicorn
