@@ -2,7 +2,7 @@ databases:
   - name: pra_djnago
     region: singapore
     plan: free
-    databaseName: pra_djnago_db
+    databaseName: pra_djnago
     user: django_user
 
 services:
@@ -18,7 +18,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: pra_djnago_db
+          name: pra_djnago
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
